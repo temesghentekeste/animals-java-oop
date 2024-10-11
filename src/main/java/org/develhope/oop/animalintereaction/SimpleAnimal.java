@@ -21,11 +21,18 @@ public abstract class SimpleAnimal implements AnimalInteraction{
     public void showInteractionHistory() {
         System.out.print("Enter (1. Play 2. Food) to see respective interaction: ");
         String key = scanner.nextLine();
-        showInteractionHistory(key);
+        if( key.equals("1")) {
+            showInteractionHistory("play");
+        } else if(key.equals("2")) {
+            showInteractionHistory("feed");
+        } else {
+            System.out.println("Wrong input");
+        }
     }
 
     public void showInteractionHistory(String key) {
         System.out.println(key + " intereactions for " + name + ": ");
+        System.out.println(intereactions);
         List<String> intreractionList = intereactions.get(key);
         for (int i = 0; i < intreractionList.size(); i++) {
             System.out.println((i+1) + ". " + intreractionList.get(i));
@@ -46,7 +53,7 @@ public abstract class SimpleAnimal implements AnimalInteraction{
 
     @Override
     public void feed(String food) {
-        if(!intereactions.containsKey("play")) {
+        if(!intereactions.containsKey("feed")) {
             intereactions.put("feed", new ArrayList<>());
         }
         intereactions.get("feed").add(food);
@@ -55,11 +62,15 @@ public abstract class SimpleAnimal implements AnimalInteraction{
     public void feed() {
         System.out.print("Enter a food to eat: ");
         String food = scanner.nextLine();
-        if(!intereactions.containsKey("play")) {
+        if(!intereactions.containsKey("feed")) {
             intereactions.put("feed", new ArrayList<>());
         }
 
+        intereactions.get("feed").add(food);
+
     }
 
-
+    public String getName() {
+        return name;
+    }
 }
