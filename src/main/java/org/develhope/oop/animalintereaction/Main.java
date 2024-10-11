@@ -14,5 +14,14 @@ public class Main {
         dog.showInteractionHistory();
 
 
+        AnimalInteraction cat = new Cat("Lucky");
+        ((Cat) cat).meow();
+        cat.play();
+        cat.play();
+
+        ((Cat) cat).feed();
+        ((Cat) cat).feed();
+        cat.showInteractionHistory();
+
     }
 }
